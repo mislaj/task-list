@@ -1,0 +1,89 @@
+.root {
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: none;
+  width: 100%;
+  font-size: 13px;
+  line-height: 16px;
+  border: 1px solid #e0dee0;
+  color: #000000;
+  transition: all 0.2s linear;
+  margin-left: 0 !important;
+  padding: 0 10px;
+
+  &.noStyle {
+    border: none !important;
+    box-shadow: none;
+    &.enlargedField {
+      padding: 0;
+      font-size: 18px;
+      font-weight: 500;
+    }
+    &:focus-within {
+      box-shadow: none;
+    }
+  }
+  &.toggledInput {
+    padding: 0;
+  }
+
+  &:focus-visible {
+    border-color: #dd3333;
+    outline: none;
+    box-shadow: 0px 0px 0px 2px rgba(98, 86, 254, 0.25);
+  }
+
+  
+
+  &.size-l {
+    height: 48px;
+  }
+  &.size-m {
+    height: 42px;
+  }
+  &.size-s {
+    height: 32px;
+    font-size: 14px;
+  }
+  &.size-xs {
+    height: 28px;
+  }
+  &.invalid {
+    border-color: #fe4949;
+    box-shadow: 0px 0px 0px 2px rgba(254, 73, 73, 0.25);
+
+    &.hasIcon {
+      svg {
+        color: #f40d0d;
+      }
+    }
+  }
+}
+
+.inputLabel {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  letter-spacing: -0.034px;
+  margin-bottom: 6px;
+}
+
+/* Target the input field and remove the background color on autofill */
+.MuiInput-input:-webkit-autofill {
+  /* Set the background color to transparent or your desired color */
+  -webkit-box-shadow: 0 0 0 100px white inset;
+  /* Other styles you may want to remove or modify */
+  border-radius: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  background-color: #fff;
+}
+
+/* Target the input placeholder and remove the background color on autofill */
+.MuiInput-input:-webkit-autofill::placeholder {
+  /* Set the background color to transparent or your desired color */
+  -webkit-text-fill-color: inherit;
+}

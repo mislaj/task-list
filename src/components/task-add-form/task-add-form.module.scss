@@ -1,0 +1,54 @@
+.input{
+    height: 28px;
+    border:1px solid #e0dee0;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    
+
+    &:focus-visible{
+        outline: none;
+        border-color: #dd3333;
+        
+    }
+    &:focus{
+        box-shadow: none !important;
+        border-color: #dd3333;
+    } 
+}
+.textarea{
+    &:focus-visible{
+        outline: none;
+        
+        
+    }
+    &:focus{
+        box-shadow: none !important;
+    }
+}
+.buttonGroup{
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 20px;
+    justify-content: flex-end;
+
+
+.cancelButton{
+    background-color: #ffffff;
+    border: 1px solid #e0dee0;
+    height: 32px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.addButton{
+    background-color: #DD3333;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 0 20px;
+    height: 32px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}}

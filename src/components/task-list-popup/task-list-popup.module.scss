@@ -6,12 +6,12 @@
     border-radius: 6px;
     padding: 10px;
     cursor: pointer;
-    &:hover{
-background-color: #f3f3f3;
+    &:hover {
+      background-color: #f3f3f3;
     }
     &:not(:last-child) {
-        // margin-bottom: 15px;
-      }
+      // margin-bottom: 15px;
+    }
     .title {
       font-size: 18px;
       font-weight: 600;
@@ -24,6 +24,45 @@ background-color: #f3f3f3;
       font-weight: 400;
       line-height: 24px;
       margin-top: 8px;
+      max-width: 600px;
+      text-overflow: ellipsis;
+      overflow: auto;
+      white-space: nowrap;
     }
   }
+}
+.btnWrap {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+.button {
+  background-color: #dd3333;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  margin-left: 10px;
+}
+.selectBox{
+    border: 1px solid #e0dee0;
+    height: 32px;
+    border-radius: 6px;
+    min-width: 180px;
+
+    &:focus-visible{
+        outline: none;
+        border-color: #dd3333;
+    }
+}
+.contentWrap{
+    min-height: 700px;
+    max-height: 700px;
+    overflow: auto;
 }
