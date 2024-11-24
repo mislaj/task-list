@@ -1,0 +1,29 @@
+.root {
+  .itemWrap {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    border-radius: 6px;
+    padding: 10px;
+    cursor: pointer;
+    &:hover{
+background-color: #f3f3f3;
+    }
+    &:not(:last-child) {
+        // margin-bottom: 15px;
+      }
+    .title {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 23.58px;
+      text-align: left;
+      color: #000000;
+    }
+    .desc {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      margin-top: 8px;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+.footer{
+    position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%; 
+  z-index: 100;
+}
+.footerWrap {
+  background-color: #000000;
+  padding: 44px 164px 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+ 
+}
+.title {
+  color: #ffffff;
+  font-size: 40px;
+  font-weight: 700;
+  margin: 0;
+  line-height: 60px;
+}
+.locationWrap {
+  display: flex;
+  gap: 8px;
+  font-weight: 400;
+  color: #979797;
+  .locationInfo{
+    max-width: 402px;
+    font-size: 16px;
+    Line-height:24px
+  }
+}

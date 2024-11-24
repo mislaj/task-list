@@ -1,0 +1,39 @@
+.taskHeader {
+    background-color: #000000;
+    padding: 20px 156px;
+    
+  }
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  .title {
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 60px;
+  }
+  .button {
+    background-color: #DD3333;
+    color: #ffffff;
+    border: none;
+    border-radius: 33px;
+    padding: 16px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 21px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: #dd5147;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(221, 81, 71, 0.4);
+    }
+  }

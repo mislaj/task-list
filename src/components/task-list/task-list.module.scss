@@ -1,0 +1,25 @@
+.root {
+  backdrop-filter: blur(55.70000076293945px);
+  background-color: #dd33330a;
+  padding: 90px 156px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .listHeader {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 52px;
+    text-align: left;
+    color: #000000;
+    max-width: 552px;
+  }
+  .listSubHeader {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 31.2px;
+    text-align: left;
+    color: #dd3333;
+    margin-top: 12px;
+    margin-bottom: 32px;
+  }
+}
