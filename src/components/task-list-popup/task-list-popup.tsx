@@ -6,7 +6,13 @@ import styles from "./task-list-popup.module.scss";
 import TaskAddForm from "../task-add-form/task-add-form";
 import useTaskList from "../../contexts/TaskList/useTaskList";
 import { DeleteIcon } from "../../assets/icons/icons";
-import { addToast, completedToast, deleteToast, editToast } from "../../utils/toast-msgs";
+import {
+  addToast,
+  completedToast,
+  deleteToast,
+  editToast,
+  unCompletedToast,
+} from "../../utils/toast-msgs";
 
 interface Props {
   onClose: () => void;
@@ -38,16 +44,21 @@ const TaskListPopup = ({ onClose }: Props) => {
     applyFilter(filter);
   };
 
-  const onDeleteTask=async(taskId:number)=>{
+  const onDeleteTask = async (taskId: number) => {
     actions.removeTask(taskId);
     applyFilter(filter);
-    deleteToast()
-  }
+    deleteToast();
+  };
 
   // Handle checkbox toggle
   const handleCheckboxChange = (taskId: number) => {
+    const task = tasks.find((task) => task.id === taskId);
     actions.toggleTask(taskId);
-    completedToast();
+    if (task && task.completed) {
+      unCompletedToast();
+    } else {
+      completedToast();
+    }
     applyFilter(filter); // Reapply filter after updating task
   };
   //filter
@@ -61,7 +72,7 @@ const TaskListPopup = ({ onClose }: Props) => {
       setFilteredTasks(tasks.filter((task) => !task.completed));
     }
   };
-  
+
   useEffect(() => {
     applyFilter(filter); // Reapply filter whenever tasks change
   }, [tasks]);
@@ -92,12 +103,8 @@ const TaskListPopup = ({ onClose }: Props) => {
         </div>
         {filteredTasks.length ? (
           filteredTasks.map((task: Task) => (
-            <div
-              key={task.id}
-              className={styles.itemWrap}
-            >
-              <div
-              >
+            <div key={task.id} className={styles.itemWrap}>
+              <div>
                 <CheckBox
                   variant={CheckboxVARIANT.CIRCLE}
                   checked={task.completed}
@@ -107,11 +114,21 @@ const TaskListPopup = ({ onClose }: Props) => {
                   }}
                 />
               </div>
-              <div className={styles.infoWrap}  onClick={() => handleEditTask(task)}>
+              <div
+                className={styles.infoWrap}
+                onClick={() => handleEditTask(task)}
+              >
                 <div className={styles.title}>{task.title}</div>
                 <div className={styles.desc}>{task.description}</div>
               </div>
-              <div className={styles.deleteIcon} onClick={()=>{onDeleteTask(task.id)}}><DeleteIcon/></div>
+              <div
+                className={styles.deleteIcon}
+                onClick={() => {
+                  onDeleteTask(task.id);
+                }}
+              >
+                <DeleteIcon />
+              </div>
             </div>
           ))
         ) : (
