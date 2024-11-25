@@ -6,7 +6,7 @@ import styles from "./task-list-popup.module.scss";
 import TaskAddForm from "../task-add-form/task-add-form";
 import useTaskList from "../../contexts/TaskList/useTaskList";
 import { DeleteIcon } from "../../assets/icons/icons";
-import { toast } from "react-toastify";
+import { addToast, completedToast, deleteToast, editToast } from "../../utils/toast-msgs";
 
 interface Props {
   onClose: () => void;
@@ -28,8 +28,10 @@ const TaskListPopup = ({ onClose }: Props) => {
   const onAddOrUpdateTask = async (task: TaskFormValues) => {
     if (editingTask) {
       actions.editTask(task);
+      editToast();
     } else {
       actions.addTask(task);
+      addToast();
     }
     setEditingTask(null);
     setShowAddTaskPopup(false);
@@ -45,6 +47,7 @@ const TaskListPopup = ({ onClose }: Props) => {
   // Handle checkbox toggle
   const handleCheckboxChange = (taskId: number) => {
     actions.toggleTask(taskId);
+    completedToast();
     applyFilter(filter); // Reapply filter after updating task
   };
   //filter
@@ -58,7 +61,7 @@ const TaskListPopup = ({ onClose }: Props) => {
       setFilteredTasks(tasks.filter((task) => !task.completed));
     }
   };
-  const deleteToast = () => toast("Task Deleted Successfully")
+  
   useEffect(() => {
     applyFilter(filter); // Reapply filter whenever tasks change
   }, [tasks]);
