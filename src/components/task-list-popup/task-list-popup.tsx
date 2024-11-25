@@ -104,12 +104,11 @@ const TaskListPopup = ({ onClose }: Props) => {
         {filteredTasks.length ? (
           filteredTasks.map((task: Task) => (
             <div key={task.id} className={styles.itemWrap}>
-              <div>
+              <div className={styles.checkboxWrap}>
                 <CheckBox
                   variant={CheckboxVARIANT.CIRCLE}
-                  checked={task.completed}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                    e.preventDefault();
+                  checked={task.completed== true}
+                  onChange={() => {
                     handleCheckboxChange(task.id);
                   }}
                 />

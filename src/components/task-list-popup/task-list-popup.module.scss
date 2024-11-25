@@ -79,6 +79,9 @@
   top: 28px;
   display: none;
 }
+.checkboxWrap{
+    z-index: 10;
+}
 @media screen and (max-width: 676px) {
   .root {
     .itemWrap {
@@ -90,25 +93,28 @@
   }
 }
 @media screen and (max-width: 576px) {
-    .deleteIcon {
-        top: 14px;
-    }
+  .deleteIcon {
+    top: 14px;
+  }
 }
 @media screen and (max-width: 476px) {
-    .root {
-      .itemWrap {
-        .desc {
-          max-width: 350px;
-          font-size: 12px;
-            line-height: 18px;
-        }
-        .title {
-            font-size: 14px;
-            line-height: 20px;
-        }
-        &:hover {
-            background-color:transparent;
-        }
+  .root {
+    .itemWrap {
+      .desc {
+        max-width: 350px;
+        font-size: 12px;
+        line-height: 18px;
+      }
+      .title {
+        font-size: 14px;
+        line-height: 20px;
+      }
+      &:hover {
+        background-color: transparent;
       }
     }
   }
+  .deleteIcon {
+    display: block;
+  }
+}
