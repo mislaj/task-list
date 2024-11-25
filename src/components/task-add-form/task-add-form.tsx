@@ -19,7 +19,7 @@ const TaskAddForm = ({ onClose, onAddTask, initialData }: Props) => {
   };
 
   const formik = useFormik<TaskFormValues>({
-    initialValues: initialData || { title: "", description: "", completed: false },
+    initialValues: initialData || {id:Date.now(), title: "", description: "", completed: false },
     onSubmit: handleSubmit,
   });
 

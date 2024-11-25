@@ -1,86 +1,50 @@
-import { useState, useEffect, useCallback } from "react";
-import axios from "axios"; // For making API calls
+import { useState, useEffect } from "react";
 import { Task, TaskFormValues } from "../../types/task";
 import CheckBox, { CheckboxVARIANT } from "../check-box/check-box";
 import Dialog from "../dialog/dialog";
 import styles from "./task-list-popup.module.scss";
 import TaskAddForm from "../task-add-form/task-add-form";
+import useTaskList from "../../contexts/TaskList/useTaskList";
+import { DeleteIcon } from "../../assets/icons/icons";
+import { toast } from "react-toastify";
 
 interface Props {
   onClose: () => void;
 }
 
-const MOCK_API_URL = "http://localhost:3001/tasks";
-
 const TaskListPopup = ({ onClose }: Props) => {
-  const [tasks, setTasks] = useState<Task[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
   const [showAddTaskPopup, setShowAddTaskPopup] = useState<boolean>(false);
   const [editingTask, setEditingTask] = useState<Task | null>(null);
   const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
   const [filter, setFilter] = useState<string>("all");
 
-  //   Fetch task list from mock API
-  const fetchTasks = useCallback(async () => {
-    try {
-      const response = await axios.get<Task[]>(MOCK_API_URL);
-      setLoading(false);
-      setTasks(response.data);
-      setFilteredTasks(response.data);
-    } catch (error) {
-      console.error("Error fetching tasks:", error);
-      return [];
-    }
-  }, []);
+  const { tasks, isLoading, actions } = useTaskList();
 
   const handleEditTask = (task: Task) => {
     setEditingTask(task);
     setShowAddTaskPopup(true);
   };
 
-  //   const onAddTask = async (newTask: TaskFormValues) => {
-  //     setTasks((prevTasks) => [newTask, ...prevTasks]);
-  //     setShowAddTaskPopup(false)
-  //   }
   const onAddOrUpdateTask = async (task: TaskFormValues) => {
     if (editingTask) {
-      // Update task
-      try {
-        const updatedTask = { ...editingTask, ...task };
-        console.log("updatedTask", updatedTask);
-        // await axios.put(`${MOCK_API_URL}/${editingTask.id}`, updatedTask);
-        setTasks((prevTasks) =>
-          prevTasks.map((t) => (t.id === editingTask.id ? updatedTask : t))
-        );
-      } catch (error) {
-        console.error("Error updating task:", error);
-      }
+      actions.editTask(task);
     } else {
-      // Add new task
-      const newTask = { ...task, id: Date.now(), completed: false }; // Mock ID
-      try {
-        await axios.post(MOCK_API_URL, newTask);
-        setTasks((prevTasks) => [newTask, ...prevTasks]);
-      } catch (error) {
-        console.error("Error adding task:", error);
-      }
+      actions.addTask(task);
     }
     setEditingTask(null);
     setShowAddTaskPopup(false);
     applyFilter(filter);
   };
 
-  // Handle checkbox toggle
-  const handleCheckboxChange = (
-    taskId: number | undefined,
-    currentCompleted: boolean
-  ) => {
-    const updatedTasks = tasks.map((task) =>
-      task.id === taskId ? { ...task, completed: !currentCompleted } : task
-    );
+  const onDeleteTask=async(taskId:number)=>{
+    actions.removeTask(taskId);
+    applyFilter(filter);
+    deleteToast()
+  }
 
-    setTasks(updatedTasks);
-    axios.put(`${MOCK_API_URL}/${taskId}`, { completed: !currentCompleted });
+  // Handle checkbox toggle
+  const handleCheckboxChange = (taskId: number) => {
+    actions.toggleTask(taskId);
     applyFilter(filter); // Reapply filter after updating task
   };
   //filter
@@ -94,17 +58,13 @@ const TaskListPopup = ({ onClose }: Props) => {
       setFilteredTasks(tasks.filter((task) => !task.completed));
     }
   };
-
-  // Fetch tasks on component mount
-  useEffect(() => {
-    fetchTasks();
-  }, []);
+  const deleteToast = () => toast("Task Deleted Successfully")
   useEffect(() => {
     applyFilter(filter); // Reapply filter whenever tasks change
   }, [tasks]);
 
   const getContentMarkup = () => {
-    if (loading) return <div>Loading tasks...</div>;
+    if (isLoading) return <div>Loading tasks...</div>;
 
     return (
       <div className={styles.root}>
@@ -132,28 +92,23 @@ const TaskListPopup = ({ onClose }: Props) => {
             <div
               key={task.id}
               className={styles.itemWrap}
-              onClick={() => handleEditTask(task)}
             >
               <div
-              //   onClick={(e: any) => {
-              //     e.stopPropagation();
-              //     e.preventDefault();
-              //   }}
               >
                 <CheckBox
                   variant={CheckboxVARIANT.CIRCLE}
                   checked={task.completed}
-                  onChange={(e: any) => {
-                    handleCheckboxChange(task.id, task.completed);
-                    e.stopPropagation();
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                     e.preventDefault();
+                    handleCheckboxChange(task.id);
                   }}
                 />
               </div>
-              <div>
+              <div className={styles.infoWrap}  onClick={() => handleEditTask(task)}>
                 <div className={styles.title}>{task.title}</div>
                 <div className={styles.desc}>{task.description}</div>
               </div>
+              <div className={styles.deleteIcon} onClick={()=>{onDeleteTask(task.id)}}><DeleteIcon/></div>
             </div>
           ))
         ) : (

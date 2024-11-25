@@ -6,11 +6,15 @@
     border-radius: 6px;
     padding: 10px;
     cursor: pointer;
+    position: relative;
     &:hover {
       background-color: #f3f3f3;
+      .deleteIcon {
+        display: block;
+      }
     }
     &:not(:last-child) {
-      // margin-bottom: 15px;
+      margin-bottom: 2px;
     }
     .title {
       font-size: 18px;
@@ -50,19 +54,58 @@
   cursor: pointer;
   margin-left: 10px;
 }
-.selectBox{
-    border: 1px solid #e0dee0;
-    height: 32px;
-    border-radius: 6px;
-    min-width: 180px;
+.selectBox {
+  border: 1px solid #e0dee0;
+  height: 32px;
+  border-radius: 6px;
+  min-width: 180px;
 
-    &:focus-visible{
-        outline: none;
-        border-color: #dd3333;
+  &:focus-visible {
+    outline: none;
+    border-color: #dd3333;
+  }
+}
+.contentWrap {
+  min-height: 700px;
+  max-height: 700px;
+  overflow: auto;
+}
+.infoWrap {
+  flex: 1;
+}
+.deleteIcon {
+  position: absolute;
+  right: 16px;
+  top: 28px;
+  display: none;
+}
+@media screen and (max-width: 676px) {
+  .root {
+    .itemWrap {
+      .desc {
+        max-width: 400px;
+        white-space: unset;
+      }
+    }
+  }
+}
+@media screen and (max-width: 576px) {
+    .deleteIcon {
+        top: 14px;
     }
 }
-.contentWrap{
-    min-height: 700px;
-    max-height: 700px;
-    overflow: auto;
-}
+@media screen and (max-width: 476px) {
+    .root {
+      .itemWrap {
+        .desc {
+          max-width: 350px;
+          font-size: 12px;
+            line-height: 18px;
+        }
+        .title {
+            font-size: 14px;
+            line-height: 20px;
+        }
+      }
+    }
+  }

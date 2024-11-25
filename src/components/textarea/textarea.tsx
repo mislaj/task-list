@@ -20,6 +20,7 @@ const TextAreaInput = (
     focusAuto = false,
     ...restProps
   }: TextAreaProps,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ref: any
 ) => {
   return (

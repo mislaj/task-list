@@ -1,9 +1,13 @@
 import { useState } from "react";
 import styles from "./header-nav.module.scss";
 import TaskListPopup from "../task-list-popup/task-list-popup";
+import TaskListProvider from "../../contexts/TaskList/TaskList.provider";
+import useTaskData from "../../hooks/useTasks/useTasks";
 
 const TaskHeader = () => {
   const [showTaskListPopup, setShowTaskListPopup] = useState<boolean>(false);
+  const { tasks, isLoading } = useTaskData();
+
   return (
     <>
       <header className={styles.taskHeader}>
@@ -19,7 +23,9 @@ const TaskHeader = () => {
         </div>
       </header>
       {showTaskListPopup && (
-        <TaskListPopup onClose={() => setShowTaskListPopup(false)} />
+        <TaskListProvider data={{ tasks, isLoading }}>
+          <TaskListPopup onClose={() => setShowTaskListPopup(false)} />
+        </TaskListProvider>
       )}
     </>
   );

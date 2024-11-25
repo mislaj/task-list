@@ -1,25 +1,92 @@
 .root {
-  backdrop-filter: blur(55.70000076293945px);
-  background-color: #dd33330a;
-  padding: 90px 156px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  .listHeader {
-    font-size: 40px;
-    font-weight: 700;
-    line-height: 52px;
-    text-align: left;
-    color: #000000;
-    max-width: 552px;
+  .sectionRoot {
+    backdrop-filter: blur(55.70000076293945px);
+    background-color: #dd33330a;
+    padding: 90px 156px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .listHeader {
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 52px;
+      text-align: left;
+      color: #000000;
+      max-width: 552px;
+    }
+    .listSubHeader {
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 31.2px;
+      text-align: left;
+      color: #dd3333;
+      margin-top: 12px;
+      margin-bottom: 32px;
+    }
+    &.secondSection {
+      background-color: #ffffff;
+    }
+    .image {
+      max-width: 554px;
+    }
   }
-  .listSubHeader {
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 31.2px;
-    text-align: left;
-    color: #dd3333;
-    margin-top: 12px;
-    margin-bottom: 32px;
+}
+@media screen and (max-width: 1220px) {
+  .root {
+    .sectionRoot {
+      padding: 90px 100px;
+    }
   }
+}
+@media screen and (max-width: 1100px) {
+  .root {
+    .sectionRoot {
+      flex-direction: column;
+      .info {
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 676px) {
+  .root {
+    .sectionRoot {
+      padding: 60px 50px;
+    }
+  }
+}
+@media screen and (max-width: 576px) {
+  .root {
+    .sectionRoot {
+      padding: 60px 30px;
+
+      .image {
+        max-width: 400px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 548px) {
+  .root {
+    .sectionRoot {
+      .listHeader {
+        font-size: 30px;
+        line-height: 40px;
+      }
+      .listSubHeader {
+        font-size: 20px;
+        line-height: 26px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 400px) {
+    .root {
+        .sectionRoot {
+          padding: 40px 20px;
+          .image {
+            max-width: 300px;
+          }
+        }
+    }
 }

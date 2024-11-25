@@ -7,6 +7,7 @@ export interface InputProps extends Omit<InputBaseProps, 'size'> {
   label?: string;
   adormentEndClassName?: string;
   focusAuto?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   InputProps?: any;
   className?: string;
   classNameWrap?: string;

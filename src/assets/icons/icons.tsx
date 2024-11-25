@@ -15,3 +15,22 @@ export const LocationIcon = (props: IconProps) => {
     </svg>
   );
 };
+export const DeleteIcon = (props: IconProps) => {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="none"
+        {...props}
+      >
+        <path
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="1.2"
+          d="M2 4.5h12M6.667 7.25v4m2.666-4v4M3.5 4.5l.643 8.143c0 .36.135.705.376.96.242.254.569.397.91.397h5.142c.341 0 .668-.143.91-.398.24-.254.376-.6.376-.96L12.5 4.5m-7 0V2.625c0-.166.088-.325.244-.442A.991.991 0 0 1 6.334 2h3.333c.22 0 .433.066.589.183a.559.559 0 0 1 .244.442V4.5"
+        />
+      </svg>
+    );
+  };
